@@ -13,6 +13,7 @@ class AddExpenseViewController: UIViewController {
 
     @IBOutlet weak var txtTitle: UITextField!
     @IBOutlet weak var txtValue: UITextField!
+    @IBOutlet weak var datePicker: UIDatePicker!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,6 +52,8 @@ class AddExpenseViewController: UIViewController {
                 
                 expense.setValue(self.txtTitle.text!, forKey: "title")
                 expense.setValue(Int64(self.txtValue.text!), forKey: "value")
+                
+                expense.setValue(self.datePicker.date, forKey: "date")
                 
                 do {
                     try managedContext.save()

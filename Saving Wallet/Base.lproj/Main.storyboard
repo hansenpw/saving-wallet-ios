@@ -76,6 +76,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="datePicker" destination="m8e-fB-ttC" id="TJz-9P-Mqu"/>
                         <outlet property="txtTitle" destination="MeS-ud-Cn6" id="4wN-kC-hWR"/>
                         <outlet property="txtValue" destination="sNN-As-MLX" id="pvA-ay-7lg"/>
                     </connections>
