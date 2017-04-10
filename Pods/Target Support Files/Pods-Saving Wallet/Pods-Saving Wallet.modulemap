@@ -1,0 +1,6 @@
+framework module Pods_Saving_Wallet {
+  umbrella header "Pods-Saving Wallet-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -8,10 +8,14 @@
 
 import UIKit
 import CoreData
+import RealmSwift
 
 class ExpenseTableViewController: UITableViewController {
     
-    var expenses : [Expense] = []
+    let realm = try! Realm()
+    let results = try! Realm().objects(Expenses.self).sorted(byKeyPath: "id", ascending: false)
+    
+//    var expenses : [Expense] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,17 +35,26 @@ class ExpenseTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+//        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         
-        let managedContext = appDelegate.persistentContainer.viewContext
+//        let managedContext = appDelegate.persistentContainer.viewContext
         
-        let fetchResult = NSFetchRequest<Expense>(entityName: "Expense")
+//        let fetchResult = NSFetchRequest<Expense>(entityName: "Expense")
         
-        do {
-            expenses = try managedContext.fetch(fetchResult)
-        } catch let error as NSError {
-            print("Could not fetch data. \(error).")
-        }
+//        do {
+//            expenses = try managedContext.fetch(fetchResult)
+//        } catch let error as NSError {
+//            print("Could not fetch data. \(error).")
+//        }
+        
+//        let ex = Expenses()
+//        ex.id = 2
+//        ex.title = "title"
+//        ex.value = 20000
+//        
+//        try! realm.write {
+//            realm.add(ex)
+//        }
     }
 
     // MARK: - Table view data source
@@ -53,7 +66,7 @@ class ExpenseTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return expenses.count
+        return results.count
     }
 
     
@@ -61,8 +74,13 @@ class ExpenseTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ExpenseCell", for: indexPath)
 
         // Configure the cell...
-        cell.textLabel?.text = expenses[indexPath.row].value(forKeyPath: "title") as? String
-        cell.detailTextLabel?.text = "Rp. " + ((expenses[indexPath.row].value(forKeyPath: "value") as? Int64)?.description)!
+//        cell.textLabel?.text = expenses[indexPath.row].value(forKeyPath: "title") as? String
+//        cell.detailTextLabel?.text = "Rp. " + ((expenses[indexPath.row].value(forKeyPath: "value") as? Int64)?.description)!
+        
+        let object = results[indexPath.row]
+        
+        cell.textLabel?.text = object.title
+        cell.detailTextLabel?.text = object.value.description
 
         return cell
     }

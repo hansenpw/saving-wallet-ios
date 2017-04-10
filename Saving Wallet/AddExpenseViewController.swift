@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import RealmSwift
 
 class AddExpenseViewController: UIViewController {
 
@@ -40,26 +41,37 @@ class AddExpenseViewController: UIViewController {
             let alert = UIAlertController(title: "Confirmation", message: "Are you sure all data is valid?", preferredStyle: .alert)
             let action = UIAlertAction(title: "NO", style: .cancel, handler: nil)
             let ok = UIAlertAction(title: "OK", style: .default, handler: { (ok) in
-                guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-                    return
-                }
+//                guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+//                    return
+//                }
+//                
+//                let managedContext = appDelegate.persistentContainer.viewContext
+//                
+//                let entity = NSEntityDescription.entity(forEntityName: "Expense", in: managedContext)
+//                
+//                let expense = NSManagedObject(entity: entity!, insertInto: managedContext)
+//                
+//                expense.setValue(self.txtTitle.text!, forKey: "title")
+//                expense.setValue(Int64(self.txtValue.text!), forKey: "value")
+//                
+//                expense.setValue(self.datePicker.date, forKey: "date")
+//                
+//                do {
+//                    try managedContext.save()
+//                    self.dismiss(animated: true, completion: nil)
+//                } catch let error as NSError {
+//                    print("Fail to save expense. \(error)")
+//                }
                 
-                let managedContext = appDelegate.persistentContainer.viewContext
+                let realm = try! Realm()
                 
-                let entity = NSEntityDescription.entity(forEntityName: "Expense", in: managedContext)
+                let ex = Expenses()
+                ex.id = realm.objects(Expenses.self).count + 1
+                ex.title = self.txtTitle.text!
+                ex.value = Int(self.txtValue.text!)!
                 
-                let expense = NSManagedObject(entity: entity!, insertInto: managedContext)
-                
-                expense.setValue(self.txtTitle.text!, forKey: "title")
-                expense.setValue(Int64(self.txtValue.text!), forKey: "value")
-                
-                expense.setValue(self.datePicker.date, forKey: "date")
-                
-                do {
-                    try managedContext.save()
-                    self.dismiss(animated: true, completion: nil)
-                } catch let error as NSError {
-                    print("Fail to save expense. \(error)")
+                try! realm.write {
+                    realm.add(ex)
                 }
             })
             alert.addAction(action)
