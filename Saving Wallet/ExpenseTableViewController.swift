@@ -15,16 +15,44 @@ class ExpenseTableViewController: UITableViewController {
     let realm = try! Realm()
     let results = try! Realm().objects(Expenses.self).sorted(byKeyPath: "id", ascending: false)
     
+    var notificationToken: NotificationToken? = nil
+    
 //    var expenses : [Expense] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Observe Results Notifications
+        notificationToken = results.addNotificationBlock { [weak self] (changes: RealmCollectionChange) in guard let tableView = self?.tableView else { return }
+            switch changes {
+            case .initial:
+                // Results are now populated and can be accessed without blocking the UI
+                tableView.reloadData()
+                break
+            case .update(_, let deletions, let insertions, let modifications):
+                // Query results have changed, so apply them to the UITableView
+                tableView.beginUpdates()
+                tableView.insertRows(at: insertions.map({ IndexPath(row: $0, section: 0) }), with: .automatic)
+                tableView.deleteRows(at: deletions.map({ IndexPath(row: $0, section: 0) }), with: .automatic)
+                tableView.reloadRows(at: modifications.map({ IndexPath(row: $0, section: 0) }), with: .automatic)
+                tableView.endUpdates()
+                break
+            case .error(let error):
+                // An error occurred while opening the Realm file on the background worker thread
+                fatalError("\(error)")
+                break
+            }
+        }
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    }
+    
+    deinit {
+        notificationToken?.stop()
     }
 
     override func didReceiveMemoryWarning() {
@@ -93,17 +121,18 @@ class ExpenseTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            try! realm.write {
+                realm.delete(results[indexPath.row])
+            }
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
-    */
 
     /*
     // Override to support rearranging the table view.
@@ -129,5 +158,7 @@ class ExpenseTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    @IBAction func backToMainList(sender: UIStoryboardSegue) {}
 
 }

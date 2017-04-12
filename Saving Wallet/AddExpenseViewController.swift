@@ -73,6 +73,7 @@ class AddExpenseViewController: UIViewController {
                 try! realm.write {
                     realm.add(ex)
                 }
+                self.performSegue(withIdentifier: "backToMainList", sender: self)
             })
             alert.addAction(action)
             alert.addAction(ok)
