@@ -12,6 +12,7 @@ import RealmSwift
 
 class ExpenseTableViewController: UITableViewController {
     
+    var id = 0
     let realm = try! Realm()
     let results = try! Realm().objects(Expenses.self).sorted(byKeyPath: "id", ascending: false)
     
@@ -149,15 +150,23 @@ class ExpenseTableViewController: UITableViewController {
     }
     */
 
-    /*
+
     // MARK: - Navigation
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        id = results[indexPath.row].id
+        performSegue(withIdentifier: "showExpenseDetail", sender: self)
+    }
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "showExpenseDetail" {
+            let vc = segue.destination as! AddExpenseViewController
+            vc.id = id
+        }
     }
-    */
     
     @IBAction func backToMainList(sender: UIStoryboardSegue) {}
 

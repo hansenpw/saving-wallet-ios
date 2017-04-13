@@ -16,9 +16,18 @@ class AddExpenseViewController: UIViewController {
     @IBOutlet weak var txtValue: UITextField!
     @IBOutlet weak var datePicker: UIDatePicker!
     
+    var id = -1
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        if id != -1 {
+            let realm = try! Realm()
+            let exp = realm.objects(Expenses.self).filter("id == \(id)").first
+            txtTitle.text = exp?.title
+            txtValue.text = "\(exp!.value)"
+            datePicker.date = exp?.date as! Date
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -68,7 +77,8 @@ class AddExpenseViewController: UIViewController {
                 let ex = Expenses()
                 ex.id = realm.objects(Expenses.self).count + 1
                 ex.title = self.txtTitle.text!
-                ex.value = Int(self.txtValue.text!)!
+                ex.value = Double(self.txtValue.text!)!
+                ex.date = self.datePicker.date as NSDate
                 
                 try! realm.write {
                     realm.add(ex)

@@ -133,6 +133,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="showExpenseDetail" id="DHN-R1-Zgf"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jia-2L-Brs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -157,4 +160,7 @@
             <point key="canvasLocation" x="-794.39999999999998" y="123.68815592203899"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="DHN-R1-Zgf"/>
+    </inferredMetricsTieBreakers>
 </document>

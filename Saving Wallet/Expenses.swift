@@ -11,6 +11,6 @@ import RealmSwift
 class Expenses: Object {
     dynamic var id = 0
     dynamic var title = ""
-    dynamic var value = 0
-
+    dynamic var value = 0.0
+    dynamic var date = NSDate()
 }
