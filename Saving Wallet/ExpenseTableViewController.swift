@@ -110,7 +110,11 @@ class ExpenseTableViewController: UITableViewController {
         
         cell.textLabel?.text = object.title
         cell.detailTextLabel?.text = object.value.description
-        cell.imageView?.backgroundColor = UIColor.green
+        if object.category == "Income" {
+            cell.imageView?.image = UIImage(color: .green, size: CGSize(width: 5, height: 10))
+        } else {
+            cell.imageView?.image = UIImage(color: .red, size: CGSize(width: 5, height: 10))
+        }
 
         return cell
     }

@@ -10,12 +10,15 @@ import UIKit
 import CoreData
 import RealmSwift
 
-class AddExpenseViewController: UIViewController {
+class AddExpenseViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
 
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var txtTitle: UITextField!
     @IBOutlet weak var txtValue: UITextField!
     @IBOutlet weak var datePicker: UIDatePicker!
-    @IBOutlet weak var txtCategory: UITextField!
+    @IBOutlet weak var categoryPicker: UIPickerView!
+    
+    let kategori = ["Income", "Food", "Transport", "Needs", "Others"]
     
     var id = -1
     var exp = Expenses()
@@ -23,12 +26,15 @@ class AddExpenseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.view.frame.height + 100)
+        
         if id != -1 {
             let realm = try! Realm()
             exp = realm.objects(Expenses.self).filter("id == \(id)").first!
             txtTitle.text = exp.title
             txtValue.text = "\(exp.value)"
-            txtCategory.text = exp.category
+//            txtCategory.text = exp.category
+            categoryPicker.selectRow(kategori.index(of: exp.category)!, inComponent: 0, animated: true)
             datePicker.date = exp.date as Date
         }
     }
@@ -36,6 +42,18 @@ class AddExpenseViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return kategori.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return kategori[row]
     }
 
     @IBAction func btnAddClicked(_ sender: UIButton) {
@@ -82,7 +100,8 @@ class AddExpenseViewController: UIViewController {
                 ex.title = self.txtTitle.text!
                 ex.value = Double(self.txtValue.text!)!
                 ex.date = self.datePicker.date as NSDate
-                ex.category = self.txtCategory.text!
+//                ex.category = self.txtCategory.text!
+                ex.category = self.kategori[self.categoryPicker.selectedRow(inComponent: 0)]
                 
                 try! realm.write {
                     realm.add(ex)
@@ -103,7 +122,8 @@ class AddExpenseViewController: UIViewController {
                 self.exp.title = self.txtTitle.text!
                 self.exp.value = Double(self.txtValue.text!)!
                 self.exp.date = self.datePicker.date as NSDate
-                self.exp.category = self.txtCategory.text!
+//                self.exp.category = self.txtCategory.text!
+                self.exp.category = self.kategori[self.categoryPicker.selectedRow(inComponent: 0)]
             
                 try! realm.write {
                     realm.add(self.exp, update: true)
