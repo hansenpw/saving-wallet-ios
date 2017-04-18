@@ -15,18 +15,21 @@ class AddExpenseViewController: UIViewController {
     @IBOutlet weak var txtTitle: UITextField!
     @IBOutlet weak var txtValue: UITextField!
     @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet weak var txtCategory: UITextField!
     
     var id = -1
+    var exp = Expenses()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         if id != -1 {
             let realm = try! Realm()
-            let exp = realm.objects(Expenses.self).filter("id == \(id)").first
-            txtTitle.text = exp?.title
-            txtValue.text = "\(exp!.value)"
-            datePicker.date = exp?.date as! Date
+            exp = realm.objects(Expenses.self).filter("id == \(id)").first!
+            txtTitle.text = exp.title
+            txtValue.text = "\(exp.value)"
+            txtCategory.text = exp.category
+            datePicker.date = exp.date as Date
         }
     }
 
@@ -46,7 +49,7 @@ class AddExpenseViewController: UIViewController {
             let action = UIAlertAction(title: "OK", style: .default, handler: nil)
             alert.addAction(action)
             present(alert, animated: true)
-        } else {
+        } else if id == -1 {
             let alert = UIAlertController(title: "Confirmation", message: "Are you sure all data is valid?", preferredStyle: .alert)
             let action = UIAlertAction(title: "NO", style: .cancel, handler: nil)
             let ok = UIAlertAction(title: "OK", style: .default, handler: { (ok) in
@@ -79,12 +82,36 @@ class AddExpenseViewController: UIViewController {
                 ex.title = self.txtTitle.text!
                 ex.value = Double(self.txtValue.text!)!
                 ex.date = self.datePicker.date as NSDate
+                ex.category = self.txtCategory.text!
                 
                 try! realm.write {
                     realm.add(ex)
                 }
                 self.performSegue(withIdentifier: "backToMainList", sender: self)
             })
+            alert.addAction(action)
+            alert.addAction(ok)
+            present(alert, animated: true)
+        }
+        else {
+            let alert = UIAlertController(title: "Confirmation", message: "Are you sure all data is valid?", preferredStyle: .alert)
+            let action = UIAlertAction(title: "NO", style: .cancel, handler: nil)
+            let ok = UIAlertAction(title: "OK", style: .default, handler: { (ok) in
+                
+                let realm = try! Realm()
+                
+                self.exp.title = self.txtTitle.text!
+                self.exp.value = Double(self.txtValue.text!)!
+                self.exp.date = self.datePicker.date as NSDate
+                self.exp.category = self.txtCategory.text!
+            
+                try! realm.write {
+                    realm.add(self.exp, update: true)
+                }
+                
+                self.performSegue(withIdentifier: "backToMainList", sender: self)
+                })
+            
             alert.addAction(action)
             alert.addAction(ok)
             present(alert, animated: true)

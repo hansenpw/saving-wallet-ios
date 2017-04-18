@@ -77,6 +77,7 @@
                     </view>
                     <connections>
                         <outlet property="datePicker" destination="m8e-fB-ttC" id="TJz-9P-Mqu"/>
+                        <outlet property="txtCategory" destination="lsp-oJ-mtY" id="m6e-qB-KhE"/>
                         <outlet property="txtTitle" destination="MeS-ud-Cn6" id="4wN-kC-hWR"/>
                         <outlet property="txtValue" destination="sNN-As-MLX" id="pvA-ay-7lg"/>
                         <segue destination="23Z-Ot-7Tt" kind="unwind" identifier="backToMainList" unwindAction="backToMainListWithSender:" id="3Fj-6a-eU8"/>
@@ -146,7 +147,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="VZy-Bm-17v" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="gMP-0a-wZV">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="gMP-0a-wZV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

@@ -13,4 +13,5 @@ class Expenses: Object {
     dynamic var title = ""
     dynamic var value = 0.0
     dynamic var date = NSDate()
+    dynamic var category = ""
 }

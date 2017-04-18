@@ -110,6 +110,7 @@ class ExpenseTableViewController: UITableViewController {
         
         cell.textLabel?.text = object.title
         cell.detailTextLabel?.text = object.value.description
+        cell.imageView?.backgroundColor = UIColor.green
 
         return cell
     }
