@@ -6,7 +6,8 @@ target 'Saving Wallet' do
   use_frameworks!
 
   # Pods for Saving Wallet
-  pod ‘RealmSwift’
+  pod 'RealmSwift'
+  pod 'ChartsRealm', :git => 'https://github.com/danielgindi/ChartsRealm.git', :branch => 'master'
 
 end
 

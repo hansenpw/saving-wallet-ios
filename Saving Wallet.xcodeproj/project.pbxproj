@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		600B422E1EB140280000BB90 /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600B422D1EB140280000BB90 /* SummaryViewController.swift */; };
+		600B42301EB1408B0000BB90 /* MoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600B422F1EB1408B0000BB90 /* MoreViewController.swift */; };
 		6057B8EF1E8F494800CC8841 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6057B8EE1E8F494800CC8841 /* AppDelegate.swift */; };
 		6057B8F11E8F494800CC8841 /* AddExpenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6057B8F01E8F494800CC8841 /* AddExpenseViewController.swift */; };
 		6057B8F41E8F494800CC8841 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6057B8F21E8F494800CC8841 /* Main.storyboard */; };
@@ -22,6 +24,8 @@
 
 /* Begin PBXFileReference section */
 		2ED7859B0D6883355FBA9B6C /* Pods_Saving_Wallet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Saving_Wallet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		600B422D1EB140280000BB90 /* SummaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SummaryViewController.swift; sourceTree = "<group>"; };
+		600B422F1EB1408B0000BB90 /* MoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreViewController.swift; sourceTree = "<group>"; };
 		6057B8EB1E8F494800CC8841 /* Saving Wallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Saving Wallet.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6057B8EE1E8F494800CC8841 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6057B8F01E8F494800CC8841 /* AddExpenseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseViewController.swift; sourceTree = "<group>"; };
@@ -85,6 +89,8 @@
 				6057B9031E8F4A3F00CC8841 /* ExpenseTableViewController.swift */,
 				60DE4B091E9B14A600D0DE8F /* Expenses.swift */,
 				6057B9051E8F4A6900CC8841 /* ExpenseTableViewCell.swift */,
+				600B422D1EB140280000BB90 /* SummaryViewController.swift */,
+				600B422F1EB1408B0000BB90 /* MoreViewController.swift */,
 				60FD02D01EA637DB0070DBE7 /* UIImageColor.swift */,
 				6057B8F81E8F494800CC8841 /* Assets.xcassets */,
 				6057B8FA1E8F494800CC8841 /* LaunchScreen.storyboard */,
@@ -226,9 +232,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				600B42301EB1408B0000BB90 /* MoreViewController.swift in Sources */,
 				60DE4B0A1E9B14A600D0DE8F /* Expenses.swift in Sources */,
 				6057B9061E8F4A6900CC8841 /* ExpenseTableViewCell.swift in Sources */,
 				6057B9041E8F4A3F00CC8841 /* ExpenseTableViewController.swift in Sources */,
+				600B422E1EB140280000BB90 /* SummaryViewController.swift in Sources */,
 				6057B8F71E8F494800CC8841 /* Saving_Wallet.xcdatamodeld in Sources */,
 				6057B8F11E8F494800CC8841 /* AddExpenseViewController.swift in Sources */,
 				60FD02D11EA637DB0070DBE7 /* UIImageColor.swift in Sources */,

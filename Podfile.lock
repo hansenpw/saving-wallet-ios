@@ -1,4 +1,10 @@
 PODS:
+  - Charts (3.0.2):
+    - Charts/Core (= 3.0.2)
+  - Charts/Core (3.0.2)
+  - ChartsRealm (3.0.2):
+    - Charts (~> 3.0.2)
+    - RealmSwift (~> 2.4)
   - Realm (2.5.1):
     - Realm/Headers (= 2.5.1)
   - Realm/Headers (2.5.1)
@@ -6,12 +12,25 @@ PODS:
     - Realm (= 2.5.1)
 
 DEPENDENCIES:
+  - ChartsRealm (from `https://github.com/danielgindi/ChartsRealm.git`, branch `master`)
   - RealmSwift
 
+EXTERNAL SOURCES:
+  ChartsRealm:
+    :branch: master
+    :git: https://github.com/danielgindi/ChartsRealm.git
+
+CHECKOUT OPTIONS:
+  ChartsRealm:
+    :commit: 32361c4d917a84f1460aca59087afd785ac4a7cb
+    :git: https://github.com/danielgindi/ChartsRealm.git
+
 SPEC CHECKSUMS:
+  Charts: 236d6ccdd0ce6feae151d89e829a7397381a21fd
+  ChartsRealm: b9347ce5cf34fca35558c420228e3f30fb79b570
   Realm: 32f86104d37c8521f864d4274050b38ba6190733
   RealmSwift: f719e7511c902b8908593e8f143f59e47931bdb6
 
-PODFILE CHECKSUM: 303522c75e47f1d342f1bea0646f404e956784b1
+PODFILE CHECKSUM: 33fcc519cd48433185b20a86c458dc2761cec90b
 
 COCOAPODS: 1.2.0

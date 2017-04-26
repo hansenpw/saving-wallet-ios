@@ -4,6 +4,16 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Charts.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>ChartsRealm.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Saving Wallet.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -22,17 +32,27 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>09EB6EFF85B58684643F185B1CFFB2C4</key>
+		<key>683FA93B40B2E388EB44CBEFF725ED29</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4B6DF37A44889AE5A6EE90D67E573B66</key>
+		<key>9ABFCDF7C418030647EE23DEBE11D45D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>FB4ACCAF8B124241D45DA59C97EA99EC</key>
+		<key>C10186F643AC0BD52AAE6B758E796AA7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D293F47DA6DE70181413B1C779844399</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F307B842FF76B2DE6C55DB67C0885325</key>
 		<dict>
 			<key>primary</key>
 			<true/>
