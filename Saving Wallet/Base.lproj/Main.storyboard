@@ -373,6 +373,48 @@
             </objects>
             <point key="canvasLocation" x="144.80000000000001" y="1626.8365817091455"/>
         </scene>
+        <!--Savings-->
+        <scene sceneID="BcU-Na-G0p">
+            <objects>
+                <viewController id="i43-1a-aHA" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ugI-fh-NlJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="cNq-KV-Rwb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="H2g-gj-eca">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rp. 2000000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ze1-Gp-FI8">
+                                <rect key="frame" x="136.5" y="72" width="102" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mvb-Jx-SsD" customClass="PieChartView" customModule="Charts">
+                                <rect key="frame" x="16" y="101" width="343" height="509"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="mvb-Jx-SsD" secondAttribute="trailing" id="2rC-gv-DT2"/>
+                            <constraint firstItem="Ze1-Gp-FI8" firstAttribute="top" secondItem="ugI-fh-NlJ" secondAttribute="bottom" constant="8" id="9hm-Ha-x0h"/>
+                            <constraint firstItem="mvb-Jx-SsD" firstAttribute="centerX" secondItem="H2g-gj-eca" secondAttribute="centerX" id="A3u-ok-eQW"/>
+                            <constraint firstItem="Ze1-Gp-FI8" firstAttribute="centerX" secondItem="H2g-gj-eca" secondAttribute="centerX" id="DoN-En-Ghm"/>
+                            <constraint firstItem="mvb-Jx-SsD" firstAttribute="top" secondItem="Ze1-Gp-FI8" secondAttribute="bottom" constant="8" id="Q7K-4p-pmi"/>
+                            <constraint firstItem="cNq-KV-Rwb" firstAttribute="top" secondItem="mvb-Jx-SsD" secondAttribute="bottom" constant="8" id="dFu-BZ-mpK"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="mvb-Jx-SsD" secondAttribute="leading" id="kaP-aW-u9a"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Savings" id="d6F-tp-nOj">
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="0b0-Q5-W0Y"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ISr-3N-iYk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1815.2" y="1289.5052473763119"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Osb-4L-Xbo">
             <objects>
@@ -386,12 +428,32 @@
                     <connections>
                         <segue destination="VZy-Bm-17v" kind="relationship" relationship="viewControllers" id="j9E-x3-6Yx"/>
                         <segue destination="gUA-wk-Jjk" kind="relationship" relationship="viewControllers" id="Yh9-J1-srp"/>
-                        <segue destination="JcF-Gx-y2L" kind="relationship" relationship="viewControllers" id="nKb-Tq-KOH"/>
+                        <segue destination="qBv-Ut-ENK" kind="relationship" relationship="viewControllers" id="dAD-oZ-c98"/>
+                        <segue destination="JcF-Gx-y2L" kind="relationship" relationship="viewControllers" id="sHO-hf-WHg"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wfg-yv-dSg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1111" y="1058"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="LqJ-vb-BlF">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qBv-Ut-ENK" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" systemItem="featured" id="SKk-MU-D28"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="hRC-FF-iw8">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="i43-1a-aHA" kind="relationship" relationship="rootViewController" id="p6m-FM-1vX"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7aR-Pv-2go" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="876" y="1289.5052473763119"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

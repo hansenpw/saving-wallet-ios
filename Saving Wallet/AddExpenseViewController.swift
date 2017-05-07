@@ -18,7 +18,7 @@ class AddExpenseViewController: UIViewController, UIPickerViewDataSource, UIPick
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var categoryPicker: UIPickerView!
     
-    let kategori = ["Income", "Food", "Transport", "Needs", "Others"]
+    let kategori = ["Income", "Saving", "Food", "Transport", "Needs", "Loan", "Others"]
     
     var id = -1
     var exp = Expenses()
