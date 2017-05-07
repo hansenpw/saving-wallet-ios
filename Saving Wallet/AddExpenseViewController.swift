@@ -11,7 +11,7 @@ import CoreData
 import RealmSwift
 
 class AddExpenseViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
-
+    
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var txtTitle: UITextField!
     @IBOutlet weak var txtValue: UITextField!
@@ -33,12 +33,12 @@ class AddExpenseViewController: UIViewController, UIPickerViewDataSource, UIPick
             exp = realm.objects(Expenses.self).filter("id == \(id)").first!
             txtTitle.text = exp.title
             txtValue.text = "\(exp.value)"
-//            txtCategory.text = exp.category
+            //            txtCategory.text = exp.category
             categoryPicker.selectRow(kategori.index(of: exp.category)!, inComponent: 0, animated: true)
             datePicker.date = exp.date as Date
         }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -55,7 +55,7 @@ class AddExpenseViewController: UIViewController, UIPickerViewDataSource, UIPick
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return kategori[row]
     }
-
+    
     @IBAction func btnAddClicked(_ sender: UIButton) {
         if txtTitle.text!.isEmpty {
             let alert = UIAlertController(title: "Data Incomplete", message: "Title must be filled", preferredStyle: .alert)
@@ -71,27 +71,27 @@ class AddExpenseViewController: UIViewController, UIPickerViewDataSource, UIPick
             let alert = UIAlertController(title: "Confirmation", message: "Are you sure all data is valid?", preferredStyle: .alert)
             let action = UIAlertAction(title: "NO", style: .cancel, handler: nil)
             let ok = UIAlertAction(title: "OK", style: .default, handler: { (ok) in
-//                guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-//                    return
-//                }
-//                
-//                let managedContext = appDelegate.persistentContainer.viewContext
-//                
-//                let entity = NSEntityDescription.entity(forEntityName: "Expense", in: managedContext)
-//                
-//                let expense = NSManagedObject(entity: entity!, insertInto: managedContext)
-//                
-//                expense.setValue(self.txtTitle.text!, forKey: "title")
-//                expense.setValue(Int64(self.txtValue.text!), forKey: "value")
-//                
-//                expense.setValue(self.datePicker.date, forKey: "date")
-//                
-//                do {
-//                    try managedContext.save()
-//                    self.dismiss(animated: true, completion: nil)
-//                } catch let error as NSError {
-//                    print("Fail to save expense. \(error)")
-//                }
+                //                guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+                //                    return
+                //                }
+                //
+                //                let managedContext = appDelegate.persistentContainer.viewContext
+                //
+                //                let entity = NSEntityDescription.entity(forEntityName: "Expense", in: managedContext)
+                //
+                //                let expense = NSManagedObject(entity: entity!, insertInto: managedContext)
+                //
+                //                expense.setValue(self.txtTitle.text!, forKey: "title")
+                //                expense.setValue(Int64(self.txtValue.text!), forKey: "value")
+                //
+                //                expense.setValue(self.datePicker.date, forKey: "date")
+                //
+                //                do {
+                //                    try managedContext.save()
+                //                    self.dismiss(animated: true, completion: nil)
+                //                } catch let error as NSError {
+                //                    print("Fail to save expense. \(error)")
+                //                }
                 
                 let realm = try! Realm()
                 
@@ -100,7 +100,7 @@ class AddExpenseViewController: UIViewController, UIPickerViewDataSource, UIPick
                 ex.title = self.txtTitle.text!
                 ex.value = Double(self.txtValue.text!)!
                 ex.date = self.datePicker.date as NSDate
-//                ex.category = self.txtCategory.text!
+                //                ex.category = self.txtCategory.text!
                 ex.category = self.kategori[self.categoryPicker.selectedRow(inComponent: 0)]
                 
                 try! realm.write {
@@ -122,21 +122,21 @@ class AddExpenseViewController: UIViewController, UIPickerViewDataSource, UIPick
                 self.exp.title = self.txtTitle.text!
                 self.exp.value = Double(self.txtValue.text!)!
                 self.exp.date = self.datePicker.date as NSDate
-//                self.exp.category = self.txtCategory.text!
+                //                self.exp.category = self.txtCategory.text!
                 self.exp.category = self.kategori[self.categoryPicker.selectedRow(inComponent: 0)]
-            
+                
                 try! realm.write {
                     realm.add(self.exp, update: true)
                 }
                 
                 self.performSegue(withIdentifier: "backToMainList", sender: self)
-                })
+            })
             
             alert.addAction(action)
             alert.addAction(ok)
             present(alert, animated: true)
         }
     }
-
+    
 }
 
