@@ -14,7 +14,7 @@ class ExpenseTableViewController: UITableViewController {
     
     var id = 0
     let realm = try! Realm()
-    let results = try! Realm().objects(Expenses.self).sorted(byKeyPath: "id", ascending: false)
+    let results = try! Realm().objects(Expenses.self).filter("date > %@ AND date < %@", Date().startOfMonth(), Date().endOfMonth()).sorted(byKeyPath: "id", ascending: false)
     
     var notificationToken: NotificationToken? = nil
     
