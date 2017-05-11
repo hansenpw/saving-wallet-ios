@@ -1,19 +1,16 @@
 //
-//  Expense.swift
+//  Savings.swift
 //  Saving Wallet
 //
-//  Created by Hansen on 4/10/17.
+//  Created by Hansen on 5/11/17.
 //  Copyright © 2017 Bang Mobile. All rights reserved.
 //
 
 import RealmSwift
 
-class Expenses: Object {
+class Savings: Object {
     dynamic var id = 0
-    dynamic var title = ""
     dynamic var value = 0.0
-    dynamic var date = NSDate()
-    dynamic var category = ""
     
     override static func primaryKey() -> String? {
         return "id"

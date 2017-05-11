@@ -17,6 +17,7 @@ class AddExpenseViewController: UIViewController, UIPickerViewDataSource, UIPick
     @IBOutlet weak var txtValue: UITextField!
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var categoryPicker: UIPickerView!
+    @IBOutlet weak var btnAdd: UIButton!
     
     let kategori = ["Income", "Saving", "Food", "Transport", "Needs", "Loan", "Others"]
     
@@ -28,6 +29,10 @@ class AddExpenseViewController: UIViewController, UIPickerViewDataSource, UIPick
         // Do any additional setup after loading the view, typically from a nib.
         scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.view.frame.height + 100)
         
+        let tap = UITapGestureRecognizer(target: self, action: #selector(AddExpenseViewController.dismissKeyboard))
+        
+        view.addGestureRecognizer(tap)
+        
         if id != -1 {
             let realm = try! Realm()
             exp = realm.objects(Expenses.self).filter("id == \(id)").first!
@@ -36,6 +41,7 @@ class AddExpenseViewController: UIViewController, UIPickerViewDataSource, UIPick
             //            txtCategory.text = exp.category
             categoryPicker.selectRow(kategori.index(of: exp.category)!, inComponent: 0, animated: true)
             datePicker.date = exp.date as Date
+            btnAdd.titleLabel?.text = "Save"
         }
     }
     
@@ -119,13 +125,12 @@ class AddExpenseViewController: UIViewController, UIPickerViewDataSource, UIPick
                 
                 let realm = try! Realm()
                 
-                self.exp.title = self.txtTitle.text!
-                self.exp.value = Double(self.txtValue.text!)!
-                self.exp.date = self.datePicker.date as NSDate
-                //                self.exp.category = self.txtCategory.text!
-                self.exp.category = self.kategori[self.categoryPicker.selectedRow(inComponent: 0)]
-                
                 try! realm.write {
+                    self.exp.title = self.txtTitle.text!
+                    self.exp.value = Double(self.txtValue.text!)!
+                    self.exp.date = self.datePicker.date as NSDate
+                    //                self.exp.category = self.txtCategory.text!
+                    self.exp.category = self.kategori[self.categoryPicker.selectedRow(inComponent: 0)]
                     realm.add(self.exp, update: true)
                 }
                 
@@ -138,5 +143,8 @@ class AddExpenseViewController: UIViewController, UIPickerViewDataSource, UIPick
         }
     }
     
+    func dismissKeyboard() {
+        view.endEditing(true)
+    }
 }
 

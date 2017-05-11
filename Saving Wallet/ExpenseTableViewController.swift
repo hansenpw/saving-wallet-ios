@@ -119,6 +119,10 @@ class ExpenseTableViewController: UITableViewController {
             cell.imageView?.image = UIImage(color: .brown, size: CGSize(width: 5, height: 10))
         } else if cat == "Needs" {
             cell.imageView?.image = UIImage(color: .blue, size: CGSize(width: 5, height: 10))
+        } else if cat == "Saving" {
+            cell.imageView?.image = UIImage(color: .yellow, size: CGSize(width: 5, height: 10))
+        } else if cat == "Loan" {
+            cell.imageView?.image = UIImage(color: .darkGray, size: CGSize(width: 5, height: 10))
         } else {
             cell.imageView?.image = UIImage(color: .cyan, size: CGSize(width: 5, height: 10))
         }
